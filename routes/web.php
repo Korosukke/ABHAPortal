@@ -20,6 +20,7 @@ use App\Http\Controllers\RecordController;
 
 Route::get('/abha',[LoginController::class,'index'])->name('session');
 Route::post('/home',[LoginController::class,'login'])->name('loginSession');
+Route::get('/homepage',[LoginController::class,'homepage'])->name('homepage');
 Route::post('/doctorLogin',[LoginController::class,'doctorLogin'])->name('doctorLogin');
 Route::post('/abha',[LoginController::class,'logout'])->name('logoutSession');
 Route::view('/terms', 'terms')->name('terms');
@@ -37,6 +38,6 @@ Route::post('/processPrescription',[PrescriptionController::class,'processPrescr
 
 Route::get('/record/{abha_number}',[RecordController::class,'allrecord'])->name('showRecords');
 Route::get('/history',[RecordController::class,'checkHistory'])->name('history');
-Route::post('/showSearch',[RecordController::class,'showSearch'])->name('search');
+Route::get('/showSearch',[RecordController::class,'showSearch']);
 
 

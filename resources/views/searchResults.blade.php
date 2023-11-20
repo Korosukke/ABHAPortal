@@ -14,7 +14,7 @@
             <!-- Logo and Portal Link -->
             <div class="flex items-center">
                 <div class="text-2xl font-bold mr-4">
-                    <a href="#" class="text-white hover:text-gray-300">ABHA Portal</a>
+                    <a href="{{route('loginSession')}}" class="text-white hover:text-gray-300">ABHA Portal</a>
                 </div>
             </div>
             
@@ -36,11 +36,44 @@
         </form>
     </div>
 
+    
+
     <div style="height: 50px;"></div>
 
+    <div class="container mx-auto mt-8">
+        <!-- Display Medical Records -->
+        <h2 class="text-2xl font-bold mb-10">PAST MEDICAL RECORDS</h2>
+        @if(count($records) > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($records as $record)
+                    @if ($record->abha_number == $abha)
+                    <div class="bg-white p-6 rounded-md shadow-md">
+                        <h2 class="text-xl font-semibold mb-4">{{ $record->disease }}</h2>
+                        <p><strong>Date:</strong> {{ $record->created_at->format('F j, Y') }}</p>
+                        <p><strong>Doctor:</strong> {{ $record->doctor }}</p>
+                        <p><strong>Hospital:</strong> {{ $record->hospital }}</p>
+                        <p><strong>Symptoms:</strong> {{ $record->symptoms }}</p>
+                        <p><strong>Tests:</strong> {{ $record->tests }}</p>
+                        <p><strong>Weight:</strong> {{ $record->weight }} kg</p>
+                        <p><strong>Medications:</strong> {{ $record->meds }}</p>
+                        <p><strong>Admit:</strong> {{ $record->admit ? 'Yes' : 'No' }}</p>
+                        <p><strong>Days Admitted:</strong> {{ $record->days }}</p>
+                    </div>
+                    @endif
+                @endforeach
+            </div>
+        @else
+            <p>No prescription records found.</p>
+        @endif
+    </div>
+
+
+
+
+    <div style="height: 50px;"></div>
     <!-- Footer container -->
 <footer
-  class="bg-darkerblue text-center text-white dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+  class="bg-darkerblue text-center text-white    dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
   <div
     class="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
     <div class="mr-12 hidden lg:block">
@@ -206,7 +239,6 @@
     </div>
   </div>
 
-  <!--Copyright section-->
   <div class="bg-neutral-200 p-6 text-center text-sm dark:bg-neutral-700">
     <p>This Website belongs to National Health Authority, Ministry of Health and Family Welfare, Government of India</p>
   </div>

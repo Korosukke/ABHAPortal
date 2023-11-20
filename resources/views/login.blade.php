@@ -20,10 +20,10 @@
         </div>
     </header>
 
-  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="flex min-h-full flex-col justify-center px-6 py-5 lg:px-8">
         
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-20 w-auto" src="{{ asset('/assets/logo.png') }}" alt="logo">
+      <img class="mx-auto h-32 w-auto" src="{{ asset('/assets/logo.jpg') }}" alt="logo">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign In</h2>
     </div>
 

@@ -20,11 +20,14 @@ class RecordController extends Controller
         return view('history');
     }
 
-    public function showSearch($abha_number)
+    public function showSearch(Request $request)
     {
+        $abha_number = $request->input('abha_number');
+        
         $records = Record::where('abha_number', $abha_number)->get();
-        return view('history', ['records' => $records, 'abha' => $abha_number]);
+        return view('searchResults', ['records' => $records, 'abha' => $abha_number]);
     }
+
 
     
 

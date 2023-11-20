@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SignupController;
+use App\Http\Controllers\PrescriptionController;
+use App\Http\Controllers\RecordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/abha',[LoginController::class,'index'])->name('session');
+Route::post('/home',[LoginController::class,'login'])->name('loginSession');
+Route::post('/doctorLogin',[LoginController::class,'doctorLogin'])->name('doctorLogin');
+Route::post('/abha',[LoginController::class,'logout'])->name('logoutSession');
+Route::view('/terms', 'terms')->name('terms');
+
+
+Route::get('/signup',[SignupController::class,'showForm'])->name('signup');
+Route::get('/docsignup',[SignupController::class,'showFormDoc'])->name('docsignup');
+Route::post('/process',[SignUpController::class,'processReg']);
+Route::post('/docprocess',[SignUpController::class,'processDoc']);
+
+Route::get('/prescription/{abha_number}', [PrescriptionController::class, 'prescription'])->name('prescript');
+Route::get('/writeprescription/{abha_number}', [PrescriptionController::class, 'writeprescription'])->name('writeprescript');
+Route::post('/processPrescription',[PrescriptionController::class,'processPrescription']);
+
+
+Route::get('/record/{abha_number}',[RecordController::class,'allrecord'])->name('showRecords');
+Route::get('/history',[RecordController::class,'checkHistory'])->name('history');
+Route::post('/showSearch',[RecordController::class,'showSearch'])->name('search');
+
+
